@@ -11,7 +11,8 @@ function createDivs(num) {
 
         //Hover effect
         content.addEventListener('mouseenter', () => {
-            content.style.backgroundColor = "black"; // Change background color on hover
+            var randomColor = Math.floor(Math.random()*16777215).toString(16);
+            content.style.backgroundColor = '#' + randomColor; // Change background color on hover
         });
 
         content.addEventListener('mouseleave', () => {
