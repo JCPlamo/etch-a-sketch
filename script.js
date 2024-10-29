@@ -10,7 +10,16 @@ function createDivs(num) {
         content.classList.add("square");
 
         //Hover effect
+
+        //Initialize hover count
+        let hoverCount = 0;
+
         content.addEventListener('mouseenter', () => {
+            hoverCount++;
+            if (hoverCount <= 10)
+            {
+                content.style.opacity = hoverCount * 0.1;
+            }
             var randomColor = Math.floor(Math.random()*16777215).toString(16);
             content.style.backgroundColor = '#' + randomColor; // Change background color on hover
         });
