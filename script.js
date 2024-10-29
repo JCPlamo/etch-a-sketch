@@ -1,6 +1,9 @@
 const container = document.querySelector("#container");
 
 function createDivs(num) {
+    container.innerHTML = ""; //Deletes existing grid when called
+    const gridSize = Math.sqrt(num); //Calculate the number of squares per side
+
     for (let i = 0; i < num; i++) 
     {
         const content = document.createElement("div");
@@ -18,22 +21,29 @@ function createDivs(num) {
         container.appendChild(content);
         
     }
+
+    // Update CSS for dynamic grid size
+    const squares = document.querySelectorAll(".square");
+    squares.forEach(square => {
+        square.style.flex = `1 0 calc(100% / ${gridSize})`;
+        square.style.height = `calc(100% / ${gridSize})`;
+    });
 }
 
 createDivs(16*16); // Create 256 squares for a 16x16 grid
 
-
-// //Hover effect
-// const square = document.querySelector("div");
-
-// square.addEventListener('mouseenter', (event) => {
-//     // Code to execute when the mouse enters the element
-//     //square.body.style.backgroundColor = black;
-//     console.log("hover");
-//     square.body.style.backgroundColor = "black";
-// });
-
-// square.addEventListener('mouseleave', (event) => {
-//     // Code to execute when the mouse leaves the element
-//     console.log("leave");
-// });
+//Buttons
+const btn = document.querySelector("#btn");
+btn.addEventListener("click", () => {
+  let userInput = prompt("Enter a number between 0 and 100");
+  Number(userInput);
+  if (userInput <= 100 && userInput >= 0)
+  {
+    createDivs(userInput*userInput);
+  }
+  else
+  {
+    alert("Not a valid number.");
+  }
+  
+});
